@@ -20,14 +20,11 @@ elixir(mix => {
     mix.scripts(
          [
            // Angular
-           'resources/assets/js/bower/jquery/dist/jquery.js',
-           'resources/assets/js/bower/angular/angular.js',
-           'resources/assets/js/bower/angular-bootstrap/ui-bootstrap.js',
-           'resources/assets/js/bower/angular-bootstrap/ui-bootstrap-tpls.js',
-           'resources/assets/js/bower/angular-resource/angular-resource.js',
-           'resources/assets/js/bower/angular-ui-router/release/angular-ui-router.js',
-           'resources/assets/js/bower/bootstrap-sass-official/assets/javascripts/bootstrap.js'
+            'resources/assets/js/bower/angular/angular.js',
+            'resources/assets/js/bower/angular-resource/angular-resource.js',
+            'resources/assets/js/bower/angular-ui-router/release/angular-ui-router.js',
+            'resources/assets/js/angular-app/*.js'
          ],
-           'public/js/angular-app.js'
+            'public/js/angular-app.js'
        );
 });
