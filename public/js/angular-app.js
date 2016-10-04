@@ -35075,18 +35075,24 @@ angular.module('ui.router.state')
   .filter('includedByState', $IncludedByStateFilter);
 })(window, window.angular);
 'use_strict';
-var main = angular.module('app', [
-    'routes',
+/*
+main.controller('DeviceController', ['$scope', function($scope) {
+    $scope.example = 'Hello World!';
+}]);*/
+
+'use_strict';
+angular.module('Controllers.main', [
+    'ui.router',
 ])
-.config([
-    '$locationProvider',
-    function ($locationProvider) {
-        $locationProvider.html5Mode(true);
-        console.debug('Hello World!');
+.controller('MainController', [
+    '$scope',
+    function ($scope) {
     }
 ]);
 'use_strict';
-angular.module('routes', [
-    'ui.router',
-]);
+/*
+main.controller('MeasurementController', ['$scope', function($scope) {
+    $scope.example = 'Hello World!';
+}]);*/
+
 //# sourceMappingURL=angular-app.js.map

@@ -4,7 +4,7 @@
 
 <link rel="stylesheet" type="text/css" href="/font-awesome-4.6.3/css/font-awesome.min.css">
 
-<div class="container">
+<div class="container" ng-controller="MainController">
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <passport-clients></passport-clients>

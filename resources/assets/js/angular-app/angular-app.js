@@ -1,6 +1,6 @@
 'use_strict';
-var main = angular.module('app', [
-    'routes',
+var app = angular.module('app', [
+    'routes'
 ])
 .config([
     '$locationProvider',

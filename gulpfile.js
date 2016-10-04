@@ -23,7 +23,7 @@ elixir(mix => {
             'resources/assets/js/bower/angular/angular.js',
             'resources/assets/js/bower/angular-resource/angular-resource.js',
             'resources/assets/js/bower/angular-ui-router/release/angular-ui-router.js',
-            'resources/assets/js/angular-app/*.js'
+            'resources/assets/js/angular-app/*'
          ],
             'public/js/angular-app.js'
        );
