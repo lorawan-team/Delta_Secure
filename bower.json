@@ -1,0 +1,28 @@
+{
+  "name": "delta_lorawan",
+  "private": true,
+  "description": "Bower file",
+  "main": [],
+  "authors": [
+    "Jesse",
+    "Mark",
+    "Leander"
+  ],
+  "license": "GLPv2",
+  "homepage": "https://github.com/lorawan-team/Delta_Secure",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "~1.4.0",
+    "angular-ui-router": "~0.2.15",
+    "angular-resource": "~1.4.0"
+  },
+  "resolutions": {
+    "angular": "~1.4.0"
+  }
+}
