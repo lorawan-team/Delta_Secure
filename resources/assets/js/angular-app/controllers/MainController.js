@@ -1,4 +1,5 @@
 'use_strict';
+
 angular.module('Controllers.main', [
     'ui.router',
 ])

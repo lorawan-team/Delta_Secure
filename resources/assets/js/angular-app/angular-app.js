@@ -1,6 +1,7 @@
 'use_strict';
-var app = angular.module('app', [
-    'routes'
+
+var angularApp = angular.module('app', [
+    'routes',
 ])
 .config([
     '$locationProvider',
@@ -9,3 +10,4 @@ var app = angular.module('app', [
         console.debug('Hello World!');
     }
 ]);
+
