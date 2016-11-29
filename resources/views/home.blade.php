@@ -21,11 +21,12 @@
                             <button type="button" class="btn btn-success pull-right"><i class="fa fa-plus"></i></button>
                         </div>
                     </div>
-                    <div id="collapseOne1" class="panel-collapse collapse">
+                    <div id="collapseOne1" class="panel-collapse collapse" ui-sref="devices">
                         <ul class="list-group">
-                            <li class="list-group-item">Device 1</li>
+                            <ui-view = "devices">
+{{--                            <li class="list-group-item">Device 1</li>
                             <li class="list-group-item">Device 2</li>
-                            <li class="list-group-item">Device 2</li>
+                            <li class="list-group-item">Device 2</li>--}}
                         </ul>
                     </div>
                 </div>

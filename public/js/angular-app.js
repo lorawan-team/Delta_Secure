@@ -35092,15 +35092,164 @@ var angularApp = angular.module('app', [
 
 angular.module('routes', [
     'ui.router',
+/*    'providers.states',*/
     'Controllers.main',
+
+    // services
+    'services.devices',
+
+])
+
+.config([
+    '$stateProvider', '$urlRouterProvider', /*'$modalStateProvider',*/
+    function ($stateProvider, $urlRouterProvider /*, $modalStateProvider*/) {
+
+        $stateProvider
+
+            /*.state('caas.microservices',{
+                url: '/microservices',
+                title: 'Microservices',
+                ncyBreadcrumb: {
+                    label: 'Microservices',
+                },
+                resolve: {
+                    CaasRepository: 'CaasRepository',
+                    containers: [
+                        'CaasRepository',
+                        function (CaasRepository) {
+                            return CaasRepository.list();
+                        }
+                    ]
+                },
+                views: {
+                    // "titlebar_footer@" : {
+                    //     templateUrl: 'api/ng-templates?template=caas.containers.partials.stats',
+                    //     controller: 'CaasTitleBarFooterCtrl',
+                    // },
+                    "titlebar_action@" : {
+                        templateUrl: 'api/ng-templates?template=caas.containers.partials.create',
+                    },
+                    "actionbar@" : {
+                        templateUrl: 'api/ng-templates?template=caas.containers.partials.actionbar-refresh',
+                    },
+                    "" : {
+                        templateUrl: 'api/ng-templates?template=caas.containers.index',
+                        controller: 'indexCaasCtrl',
+                    },
+                },
+            })
+*/
+            // Devices
+            .state('devices',{
+                url: '/devices',
+                title: 'Devices',
+                resolve: {
+                    DeviceRepository: 'DeviceRepository',
+                    devices: [
+                        'DeviceRepository',
+                        function (DeviceRepository) {
+                            return DeviceRepository.list();
+                        }
+                    ]
+                },
+                views: {
+                    // "titlebar_footer@" : {
+                    //     templateUrl: 'api/ng-templates?template=caas.containers.partials.stats',
+                    //     controller: 'CaasTitleBarFooterCtrl',
+                    // },
+                    "devices@" : {
+                        templateUrl: 'views/devices.html',
+                        controller: 'DeviceController'
+                    },
+/*                    "actionbar@" : {
+                        templateUrl: 'api/ng-templates?template=caas.containers.partials.actionbar-refresh',
+                    },*/
+
+/*                    "" : {
+                        templateUrl: 'api/ng-templates?template=caas.containers.index',
+                        controller: 'DeviceController',
+                    },*/
+                },
+            });
+            /*
+            .state('devices.show',{
+                url: '',
+                title: 'Devices',
+            })
+            .state('devices.create',{
+                url: '',
+                title: 'Devices',
+            })
+            .state('devices.update',{
+                url: '',
+                title: 'Devices',
+            })
+            .state('devices.delete',{
+                url: '',
+                title: 'Devices',
+            })
+
+            // Sensors
+            .state('sensors',{
+                url: '/sensors',
+                title: 'Sensors',
+            })
+            .state('sensors.show',{
+                url: '',
+                title: 'Sensors',
+            })
+            .state('sensors.create',{
+                url: '',
+                title: 'Sensors',
+            })
+            .state('sensors.update',{
+                url: '',
+                title: 'Sensors',
+            })
+            .state('sensors.delete',{
+                url: '',
+                title: 'Sensors',
+            });*/
+
+        // create container page variable views ------end------
+/*        $modalStateProvider
+            .state('caas.microservices.show.remove', {
+                url: '/remove',
+                title: 'Microservice details',
+                ncyBreadcrumb: {
+                    skip: true,
+                },
+                resolve: {
+                    modalData: ['container', function (container) {
+                        return container;
+                    }],
+                },
+                modal: {
+                    templateUrl: 'api/ng-templates?template=caas.containers.remove',
+                    controller: 'removeCaasCtrl',
+                    size: 'md',
+                }
+            });*/
+    }
 ]);
 
 'use_strict';
-/*
-main.controller('DeviceController', ['$scope', function($scope) {
-    $scope.example = 'Hello World!';
-}]);*/
 
+/*
+ main.controller('DeviceController', ['$scope', function($scope) {
+ $scope.example = 'Hello World!';
+ }]);
+ */
+
+angular.module('device.controller', [
+    'ui.router',
+])
+.controller('DeviceController', [
+    '$scope', '$location', '$state', '$window', 'devices',
+    function ($scope, $location, $state, $window, devices) {
+        console.debug(devices);
+    }
+]);
 'use_strict';
 
 angular.module('Controllers.main', [
@@ -35112,10 +35261,194 @@ angular.module('Controllers.main', [
     }
 ]);
 
+
+
 'use_strict';
 /*
 main.controller('MeasurementController', ['$scope', function($scope) {
     $scope.example = 'Hello World!';
 }]);*/
 
+'use_strict';
+
+angular.module('services.abstractResources', [
+    'ngResource',
+    'services.helpers',
+/*    'services.auth',*/
+])
+
+    .factory('AbstractResource', [
+        '$rootScope', '$resource',
+        function ($rootScope, $resource) {
+            return function (url, params, methods) {
+
+                var accessToken = "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6ImM1Yzg3NzU2Yzk0YTZiYzQ3MDg1MzQ5NGQ4N2Q2NjY5Mjg5ZWNmZGUyYTI2YTRlZjMxNzQzYzE3Yzg2YTEzYjVhYTU1ZWQ5ODA5YWU0YjY1In0.eyJhdWQiOiIxIiwianRpIjoiYzVjODc3NTZjOTRhNmJjNDcwODUzNDk0ZDg3ZDY2NjkyODllY2ZkZTJhMjZhNGVmMzE3NDNjMTdjODZhMTNiNWFhNTVlZDk4MDlhZTRiNjUiLCJpYXQiOjE0NzQ4ODc1ODUsIm5iZiI6MTQ3NDg4NzU4NSwiZXhwIjo0NjMwNTYxMTg1LCJzdWIiOiIxMSIsInNjb3BlcyI6W119.rD06IJzDoOpkVkDkt70Jqzs48E2O00DK2brumPaXxGfkhp3Ta5bxJoCJ94gvq62Do8IcaS2dWjTtBY1N7r65k5Kr26V214e3DfV1_JZBhiGiHCdpcjeMPBK2-u4Z-7Z21LixQHcuD7OFWEvJLS5o9S5dFP9Hc_D2C-uIl0TjCX66uU6s8aywitS2Zt-eRUrwUXPIXeHalXh_uxiDnh-nlTj3K2xTYJMGmBQV8O5LFtz1kaSF3ZkQ2qukDQCQiRvLaChYHbksab2xvpNYcaWhP5s4yTMfpbjkAIM763YqcL95iVTFQ-PImVXXf9kzDZKTvKo8v9v_aUQPoYzkRPoJFXQF6VYfw0fcTvLAnr-lXlz2u3YaRHQ1B2nifctfgcHjAprhhxpI6rqIvr4WWQS27--lTKmywxMlpjrbS460Bxru9Mv2hFNz1J2ZXYuTsdj9mdobeLraKHU1zx__9QY4A4MOk_3MMyxL3rDeQktVCXOhwlICkCIy1j7GwU6uJws21wsKGnaWhUMmrdzeDJSr6h0LrDeBih0OfM1K1MGFi4nkJUUn1uG1VxnLVKwKLaa_Oeo5ytplRFC6nGiX-_j7ov2DY5hLHI9YsPg3QRGqCf0raXILq9P2H0THBmKfnfK-HEvIA_tH5Lhsj8eVHXkiXgJ2rL_4uCCnnKp--PFaoLw";
+                var defaultParams = {
+                        account_id: "1",
+                        device_id: '@device_id',
+                        /*uuid: '@uuid',*/
+                    },
+                    defaultMethods = {
+                        'query': {
+                            method: 'GET',
+                            isArray: false,
+                            headers: {
+                                'Content-Type': 'application/vnd.v1+json',
+                                'Authorization': 'Bearer ' + accessToken,
+                            }
+                        },
+                        'get': {
+                            method: 'GET',
+                            cache: false,
+                            headers: {
+                                'Content-Type': 'application/vnd.v1+json',
+                                'Authorization': 'Bearer ' + accessToken,
+                            }
+                        },
+                        'save': {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/vnd.v1+json',
+                                'Authorization': 'Bearer ' + accessToken,
+                            }
+                        },
+                        'update': {
+                            method: 'PUT',
+                            headers: {
+                                'Content-Type': 'application/vnd.v1+json',
+                                'Authorization': 'Bearer ' + accessToken,
+                            }
+                        },
+                        'delete': {
+                            method: 'DELETE',
+                            headers: {
+                                'Content-Type': 'application/vnd.v1+json',
+                                'Authorization': 'Bearer ' + accessToken,
+                            }
+                        },
+                        'status': {
+                            method: 'GET',
+                            ignoreHttpErrors: true,
+                            headers: {
+                                'Content-Type': 'application/vnd.v1+json',
+                                'Authorization': 'Bearer ' + accessToken,
+                            }
+                        },
+                    };
+
+                return $resource(
+                    url,
+                    angular.extend(defaultParams, params),
+                    angular.extend(defaultMethods, methods)
+                );
+            };
+        }
+    ]);
+
+'use_strict';
+
+angular.module('services.devices', [
+    'ui.router',
+    'services.abstractResources',
+/*    'services.helpers',*/
+])
+
+.factory('DeviceRepository', [
+    'makeArray', 'makeInstance', 'Device',
+    function (makeArray, makeInstance, Device) {
+        var Devices = AbstractResource('delta.dev/devices/:device_id');
+
+        Devices.list = function () {
+            return this.get().$promise
+                .then(function (response) {
+                    return response.data;
+                })
+                .then(makeArray(Device))
+                .then(function (collection) {
+                    return collection;
+                });
+        };
+/*
+
+        CaasContainers.show = function (query) {
+            return this.get(query).$promise
+                .then(function (response) {
+                    return response.data;
+                })
+                .then(makeInstance(CaasContainer))
+                .then(function (item) {
+                    return item;
+                });
+        };
+
+        CaasContainers.status = function (query) {
+            return this.get({ uuid : query + '/status' }).$promise
+                .then(function (response) {
+                    return response.data;
+                })
+                .then(function (collection) {
+                    return collection;
+                });
+        };
+
+        CaasContainers.create = function (query, success, error) {
+            return this.save(query, success, error);
+        };
+
+        CaasContainers.edit = function (query, success, error) {
+            return this.update(query, success, error);
+        };
+
+        CaasContainers.destroy = function (query, success, error) {
+            return this.delete(query, success, error);
+        };
+*/
+
+        return Devices;
+    }
+])
+
+.factory('Device', [
+    '$state',
+    function ($state) {
+        var Container = function (attrs) {
+            angular.extend(this, attrs);
+        };
+
+/*        Container.prototype.edit = function () {
+            var self = this;
+            $state.go('caas.microservices.show.edit', { 'uuid': self.uuid, 'type': self.container_type_obj.value });
+        };
+
+        Container.prototype.destroy = function () {
+            var self = this;
+            $state.go('caas.microservices.show.remove', { 'uuid': self.uuid, 'type': self.container_type_obj.value });
+        };*/
+
+        return Container;
+    }
+]);
+
+'use_strict';
+angular.module('services.helpers', [])
+    .factory('makeArray', function () {
+        var makeArray = function (Type) {
+            return function (response) {
+                var collection = [];
+                angular.forEach(response, function (data) {
+                    collection.push(new Type(data));
+                });
+                return collection;
+            }
+        }
+        return makeArray;
+    })
+    .factory('makeInstance', function () {
+        var makeInstance = function (Type) {
+            return function (response) {
+                return new Type(response);
+            }
+        }
+        return makeInstance;
+    });
 //# sourceMappingURL=angular-app.js.map

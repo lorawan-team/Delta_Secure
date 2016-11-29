@@ -20,6 +20,7 @@
             'csrfToken' => csrf_token(),
         ]); ?>
     </script>
+    <base href="/">
 </head>
 <body>
     <nav class="navbar navbar-default navbar-static-top">
