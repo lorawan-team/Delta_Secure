@@ -14,6 +14,7 @@
 
     <!-- Styles -->
     <link href="/css/app.css" rel="stylesheet">
+	<link href="/css/custom.css" rel="stylesheet">
 
     <!-- Scripts -->
     <script>
@@ -38,7 +39,7 @@
 
                 <!-- Branding Image -->
                 <a class="navbar-brand" href="{{ secure_url('/') }}">
-                    Delta LoRaWAN
+                    <img id="navbar-icon" alt="Delta LoRaWAN" src="favicon.ico"> &nbspDelta LoRaWAN
                 </a>
             </div>
 
