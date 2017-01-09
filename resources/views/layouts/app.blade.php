@@ -67,15 +67,15 @@
                             <ul class="dropdown-menu" role="menu">
                                 <li>
 									<a href="">
-                                        User Settings
+                                        <i class="fa fa-user"></i> &nbspUser Settings
                                     </a>
 									<a href="https://github.com/lorawan-team">
-                                        View Source Code
+                                        <i class="fa fa-code"></i> &nbspView Source Code
                                     </a>
                                     <a href="{{ secure_url('/logout') }}"
                                         onclick="event.preventDefault();
                                                  document.getElementById('logout-form').submit();">
-                                        Logout
+                                        <i class="fa fa-sign-out"></i> &nbspLogout
                                     </a>
 
                                     <form id="logout-form" action="{{ secure_url('/logout') }}" method="POST" style="display: none;">
