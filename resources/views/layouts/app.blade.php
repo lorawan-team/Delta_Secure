@@ -37,7 +37,7 @@
 
                 <!-- Branding Image -->
                 <a class="navbar-brand" href="{{ secure_url('/') }}">
-                    {{ config('app.name', 'Laravel') }}
+                    Delta LoRaWAN
                 </a>
             </div>
 
@@ -61,6 +61,15 @@
 
                             <ul class="dropdown-menu" role="menu">
                                 <li>
+									<a href="">
+                                        User Settings
+                                    </a>
+									<a href="">
+                                        User Management
+                                    </a>
+									<a href="https://github.com/lorawan-team">
+                                        View Source Code
+                                    </a>
                                     <a href="{{ secure_url('/logout') }}"
                                         onclick="event.preventDefault();
                                                  document.getElementById('logout-form').submit();">
