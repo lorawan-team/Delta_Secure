@@ -24,9 +24,9 @@
                     <div id="collapseOne1" class="panel-collapse collapse" ui-sref="devices">
                         <ul class="list-group">
                             <ui-view = "devices">
-                            <li class="list-group-item">Device 1</li>
-                            <li class="list-group-item">Device 2</li>
-                            <li class="list-group-item">Device 2</li>
+                            <li class="list-group-item">Device 1<button type="button" class="btn btn-link pull-right"><i class="fa fa-ellipsis-v"></i></button></li>
+                            <li class="list-group-item">Device 2<button type="button" class="btn btn-link pull-right"><i class="fa fa-ellipsis-v"></i></button></li>
+                            <li class="list-group-item">Device 2<button type="button" class="btn btn-link pull-right"><i class="fa fa-ellipsis-v"></i></button></li>
                         </ul>
                     </div>
                 </div>
@@ -41,15 +41,15 @@
                     </div>
                     <div id="collapseTwo1" class="panel-collapse collapse">
                         <ul class="list-group">
-                            <li class="list-group-item"><a>Device 1</a>&nbsp<a>Sensor 1</a></li>
-                            <li class="list-group-item"><a>Device 1</a>&nbsp<a>Sensor 2</a></li>
-                            <li class="list-group-item"><a>Device 1</a>&nbsp<a>Sensor 3</a></li>
-                            <li class="list-group-item"><a>Device 2</a>&nbsp<a>Sensor 1</a></li>
-                            <li class="list-group-item"><a>Device 2</a>&nbsp<a>Sensor 2</a></li>
-                            <li class="list-group-item"><a>Device 2</a>&nbsp<a>Sensor 3</a></li>
-                            <li class="list-group-item"><a>Device 3</a>&nbsp<a>Sensor 1</a></li>
-                            <li class="list-group-item"><a>Device 3</a>&nbsp<a>Sensor 2</a></li>
-                            <li class="list-group-item"><a>Device 3</a>&nbsp<a>Sensor 3</a></li>
+                            <li class="list-group-item"><a>Device 1</a>&nbsp<a>Sensor 1</a><button type="button" class="btn btn-link pull-right"><i class="fa fa-ellipsis-v"></i></button></li>
+                            <li class="list-group-item"><a>Device 1</a>&nbsp<a>Sensor 2</a><button type="button" class="btn btn-link pull-right"><i class="fa fa-ellipsis-v"></i></button></li>
+                            <li class="list-group-item"><a>Device 1</a>&nbsp<a>Sensor 3</a><button type="button" class="btn btn-link pull-right"><i class="fa fa-ellipsis-v"></i></button></li>
+                            <li class="list-group-item"><a>Device 2</a>&nbsp<a>Sensor 1</a><button type="button" class="btn btn-link pull-right"><i class="fa fa-ellipsis-v"></i></button></li>
+                            <li class="list-group-item"><a>Device 2</a>&nbsp<a>Sensor 2</a><button type="button" class="btn btn-link pull-right"><i class="fa fa-ellipsis-v"></i></button></li>
+                            <li class="list-group-item"><a>Device 2</a>&nbsp<a>Sensor 3</a><button type="button" class="btn btn-link pull-right"><i class="fa fa-ellipsis-v"></i></button></li>
+                            <li class="list-group-item"><a>Device 3</a>&nbsp<a>Sensor 1</a><button type="button" class="btn btn-link pull-right"><i class="fa fa-ellipsis-v"></i></button></li>
+                            <li class="list-group-item"><a>Device 3</a>&nbsp<a>Sensor 2</a><button type="button" class="btn btn-link pull-right"><i class="fa fa-ellipsis-v"></i></button></li>
+                            <li class="list-group-item"><a>Device 3</a>&nbsp<a>Sensor 3</a><button type="button" class="btn btn-link pull-right"><i class="fa fa-ellipsis-v"></i></button></li>
                         </ul>
                     </div>
                 </div>
