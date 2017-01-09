@@ -18,7 +18,7 @@
                             <h4 class="panel-title">
                                 Devices
                             </h4>
-                            <button type="button" class="btn btn-success pull-right"><i class="fa fa-plus"></i></button>
+                            <button type="button" class="btn btn-link pull-right"><i class="fa fa-chevron-down"></i></button>
                         </div>
                     </div>
                     <div id="collapseOne1" class="panel-collapse collapse" ui-sref="devices">
@@ -36,7 +36,7 @@
                             <h4 class="panel-title">
                                 Sensors
                             </h4>
-                            <button type="button" class="btn btn-success pull-right"><i class="fa fa-plus"></i></button>
+                            <button type="button" class="btn btn-link pull-right"><i class="fa fa-chevron-down"></i></button>
                         </div>
                     </div>
                     <div id="collapseTwo1" class="panel-collapse collapse">
