@@ -45,7 +45,11 @@
             <div class="collapse navbar-collapse" id="app-navbar-collapse">
                 <!-- Left Side Of Navbar -->
                 <ul class="nav navbar-nav">
-                    &nbsp;
+					@if (Auth::guest())
+
+					@else
+						@include('layouts.menu')
+					@endif
                 </ul>
 
                 <!-- Right Side Of Navbar -->
@@ -64,9 +68,6 @@
                                 <li>
 									<a href="">
                                         User Settings
-                                    </a>
-									<a href="">
-                                        User Management
                                     </a>
 									<a href="https://github.com/lorawan-team">
                                         View Source Code
