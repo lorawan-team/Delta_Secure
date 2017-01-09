@@ -24,9 +24,9 @@
                     <div id="collapseOne1" class="panel-collapse collapse" ui-sref="devices">
                         <ul class="list-group">
                             <ui-view = "devices">
-{{--                            <li class="list-group-item">Device 1</li>
+                            <li class="list-group-item">Device 1</li>
                             <li class="list-group-item">Device 2</li>
-                            <li class="list-group-item">Device 2</li>--}}
+                            <li class="list-group-item">Device 2</li>
                         </ul>
                     </div>
                 </div>
