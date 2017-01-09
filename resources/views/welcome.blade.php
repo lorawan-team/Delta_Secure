@@ -81,7 +81,7 @@
 
                 <div class="links">
                     <a href="https://github.com/lorawan-team/Delta_LoRaWAN/wiki">Documentation</a>
-                    <a href="https://github.com/lorawan-team">GitHub</a>
+                    <a href="https://github.com/lorawan-team">Source Code</a>
                 </div>
             </div>
         </div>

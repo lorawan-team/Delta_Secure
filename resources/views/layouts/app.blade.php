@@ -70,9 +70,6 @@
 									<a href="">
                                         <i class="fa fa-user"></i> &nbspUser Settings
                                     </a>
-									<a href="https://github.com/lorawan-team">
-                                        <i class="fa fa-code"></i> &nbspView Source Code
-                                    </a>
                                     <a href="{{ secure_url('/logout') }}"
                                         onclick="event.preventDefault();
                                                  document.getElementById('logout-form').submit();">
@@ -92,6 +89,12 @@
     </nav>
 
     @yield('content')
+	
+	<footer class="footer">
+		<div class="container">
+			<p class="text-muted"><a href="https://github.com/lorawan-team/Delta_LoRaWAN/wiki">Documentation</a> | <a href="https://github.com/lorawan-team">Source Code</a></p>
+		</div>
+	</footer>
 
     <!-- Scripts -->
     <script src="/js/app.js"></script>
