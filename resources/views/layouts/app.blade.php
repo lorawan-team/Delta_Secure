@@ -10,6 +10,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>Delta LoRaWAN</title>
+	<link rel="shortcut icon" href="favicon.ico">
 
     <!-- Styles -->
     <link href="/css/app.css" rel="stylesheet">
