@@ -18,5 +18,6 @@ angular.module('services.helpers', [])
                 return new Type(response);
             }
         }
+
         return makeInstance;
     });

@@ -96,7 +96,6 @@
 	</footer>
 
     <!-- Scripts -->
-    <script src="/js/app.js"></script>
-    // <script src="/js/angular-app.js"></script>
+     <script src="/js/angular-app.js"></script>
 </body>
 </html>

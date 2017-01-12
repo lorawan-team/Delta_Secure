@@ -35077,16 +35077,25 @@ angular.module('ui.router.state')
 'use_strict';
 
 var angularApp = angular.module('app', [
-    'routes',
+    'routes', 'ui-router',
+
 ])
+
 .config([
     '$locationProvider',
     function ($locationProvider) {
         $locationProvider.html5Mode(true);
         console.debug('Hello World!');
-    }
-]);
 
+    }
+
+])
+.controller( 'MainController', [
+  "$scope", "$state",
+    function($scope, $state) {
+      console.debug('test123');
+    };
+]);
 
 'use_strict';
 
@@ -35097,49 +35106,16 @@ angular.module('routes', [
 
     // services
     'services.devices',
+    'services.users',
 
 ])
 
 .config([
-    '$stateProvider', '$urlRouterProvider', /*'$modalStateProvider',*/
-    function ($stateProvider, $urlRouterProvider /*, $modalStateProvider*/) {
+    '$stateProvider', '$urlRouterProvider',
+    function ($stateProvider, $urlRouterProvider) {
 
         $stateProvider
-
-            /*.state('caas.microservices',{
-                url: '/microservices',
-                title: 'Microservices',
-                ncyBreadcrumb: {
-                    label: 'Microservices',
-                },
-                resolve: {
-                    CaasRepository: 'CaasRepository',
-                    containers: [
-                        'CaasRepository',
-                        function (CaasRepository) {
-                            return CaasRepository.list();
-                        }
-                    ]
-                },
-                views: {
-                    // "titlebar_footer@" : {
-                    //     templateUrl: 'api/ng-templates?template=caas.containers.partials.stats',
-                    //     controller: 'CaasTitleBarFooterCtrl',
-                    // },
-                    "titlebar_action@" : {
-                        templateUrl: 'api/ng-templates?template=caas.containers.partials.create',
-                    },
-                    "actionbar@" : {
-                        templateUrl: 'api/ng-templates?template=caas.containers.partials.actionbar-refresh',
-                    },
-                    "" : {
-                        templateUrl: 'api/ng-templates?template=caas.containers.index',
-                        controller: 'indexCaasCtrl',
-                    },
-                },
-            })
-*/
-            // Devices
+              // Devices
             .state('devices',{
                 url: '/devices',
                 title: 'Devices',
@@ -35153,83 +35129,34 @@ angular.module('routes', [
                     ]
                 },
                 views: {
-                    // "titlebar_footer@" : {
-                    //     templateUrl: 'api/ng-templates?template=caas.containers.partials.stats',
-                    //     controller: 'CaasTitleBarFooterCtrl',
-                    // },
                     "devices@" : {
                         templateUrl: 'views/devices.html',
                         controller: 'DeviceController'
                     },
-/*                    "actionbar@" : {
-                        templateUrl: 'api/ng-templates?template=caas.containers.partials.actionbar-refresh',
-                    },*/
+                },
+            })
 
-/*                    "" : {
-                        templateUrl: 'api/ng-templates?template=caas.containers.index',
-                        controller: 'DeviceController',
-                    },*/
+            // Users
+            .state('user',{
+                url: '/user/:id',
+                title: 'user management',
+                resolve: {
+                    UserRepository: 'UserRepository',
+                    user: [
+                        'UserRepository', '$stateParams',
+                        function ($stateParams, UserRepository) {
+                            console.debug(UserRepository.show( { user_id: $stateParams.id } ));
+                            return UserRepository.show( { user_id: $stateParams.id } );
+                        }
+                    ],
+                },
+                views: {
+                    "" : {
+                        templateUrl: 'views/users.html',
+                        controller: 'UserController'
+                    },
                 },
             });
-            /*
-            .state('devices.show',{
-                url: '',
-                title: 'Devices',
-            })
-            .state('devices.create',{
-                url: '',
-                title: 'Devices',
-            })
-            .state('devices.update',{
-                url: '',
-                title: 'Devices',
-            })
-            .state('devices.delete',{
-                url: '',
-                title: 'Devices',
-            })
-
-            // Sensors
-            .state('sensors',{
-                url: '/sensors',
-                title: 'Sensors',
-            })
-            .state('sensors.show',{
-                url: '',
-                title: 'Sensors',
-            })
-            .state('sensors.create',{
-                url: '',
-                title: 'Sensors',
-            })
-            .state('sensors.update',{
-                url: '',
-                title: 'Sensors',
-            })
-            .state('sensors.delete',{
-                url: '',
-                title: 'Sensors',
-            });*/
-
-        // create container page variable views ------end------
-/*        $modalStateProvider
-            .state('caas.microservices.show.remove', {
-                url: '/remove',
-                title: 'Microservice details',
-                ncyBreadcrumb: {
-                    skip: true,
-                },
-                resolve: {
-                    modalData: ['container', function (container) {
-                        return container;
-                    }],
-                },
-                modal: {
-                    templateUrl: 'api/ng-templates?template=caas.containers.remove',
-                    controller: 'removeCaasCtrl',
-                    size: 'md',
-                }
-            });*/
     }
 ]);
 
@@ -35250,6 +35177,7 @@ angular.module('device.controller', [
         console.debug(devices);
     }
 ]);
+
 'use_strict';
 
 angular.module('Controllers.main', [
@@ -35261,13 +35189,22 @@ angular.module('Controllers.main', [
     }
 ]);
 
-
-
 'use_strict';
 /*
 main.controller('MeasurementController', ['$scope', function($scope) {
     $scope.example = 'Hello World!';
 }]);*/
+
+'use_strict';
+
+angular.module('Controllers.main', [
+    'ui.router',
+])
+.controller('UsersController', [
+    '$scope', 'user',
+    function ($scope, user) {
+    }
+]);
 
 'use_strict';
 
@@ -35350,7 +35287,7 @@ angular.module('services.abstractResources', [
 angular.module('services.devices', [
     'ui.router',
     'services.abstractResources',
-/*    'services.helpers',*/
+    'services.helpers',
 ])
 
 .factory('DeviceRepository', [
@@ -35368,41 +35305,6 @@ angular.module('services.devices', [
                     return collection;
                 });
         };
-/*
-
-        CaasContainers.show = function (query) {
-            return this.get(query).$promise
-                .then(function (response) {
-                    return response.data;
-                })
-                .then(makeInstance(CaasContainer))
-                .then(function (item) {
-                    return item;
-                });
-        };
-
-        CaasContainers.status = function (query) {
-            return this.get({ uuid : query + '/status' }).$promise
-                .then(function (response) {
-                    return response.data;
-                })
-                .then(function (collection) {
-                    return collection;
-                });
-        };
-
-        CaasContainers.create = function (query, success, error) {
-            return this.save(query, success, error);
-        };
-
-        CaasContainers.edit = function (query, success, error) {
-            return this.update(query, success, error);
-        };
-
-        CaasContainers.destroy = function (query, success, error) {
-            return this.delete(query, success, error);
-        };
-*/
 
         return Devices;
     }
@@ -35415,15 +35317,44 @@ angular.module('services.devices', [
             angular.extend(this, attrs);
         };
 
-/*        Container.prototype.edit = function () {
-            var self = this;
-            $state.go('caas.microservices.show.edit', { 'uuid': self.uuid, 'type': self.container_type_obj.value });
+        return Container;
+    }
+]);
+
+'use_strict';
+
+angular.module('services.users', [
+    'ui.router',
+    'services.abstractResources',
+    'services.helpers',
+])
+
+.factory('UsersRepository', [
+    'makeArray', 'makeInstance', 'User',
+    function (makeArray, makeInstance, User) {
+        var Users = AbstractResource('delta.dev/users/:user_id');
+
+        Users.list = function (query) {
+            return this.get(query).$promise
+                .then(function (response) {
+                    return response.data;
+                })
+                .then(makeArray(User))
+                .then(function (item) {
+                    return item;
+                });
         };
 
-        Container.prototype.destroy = function () {
-            var self = this;
-            $state.go('caas.microservices.show.remove', { 'uuid': self.uuid, 'type': self.container_type_obj.value });
-        };*/
+        return Users;
+    }
+])
+
+.factory('User', [
+    '$state',
+    function ($state) {
+        var Container = function (attrs) {
+            angular.extend(this, attrs);
+        };
 
         return Container;
     }
@@ -35449,6 +35380,8 @@ angular.module('services.helpers', [])
                 return new Type(response);
             }
         }
+
         return makeInstance;
     });
+
 //# sourceMappingURL=angular-app.js.map
