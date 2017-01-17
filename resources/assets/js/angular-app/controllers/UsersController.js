@@ -5,6 +5,7 @@ angular.module('Controllers.main', [
 ])
 .controller('UsersController', [
     '$scope', 'user',
-    function ($scope, user) {
+    function ($scope) {
+      $scope.test= '123';
     }
 ]);

@@ -15,6 +15,7 @@
     <!-- Styles -->
     <link href="/css/app.css" rel="stylesheet">
 	<link href="/css/custom.css" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="/font-awesome-4.6.3/css/font-awesome.min.css">
 
     <!-- Scripts -->
     <script>
@@ -86,8 +87,30 @@
             </div>
         </div>
     </nav>
-
+        <!-- content -->
     @yield('content')
+<div class="col-md-8 col-md-offset-2" ng-controller="MainController">
+    <div class="panel-group" id="accordion1">
+        <div class="panel panel-default">
+            <div class="panel-heading accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion1,#accordion2,#accordion3" data-target="#collapseOne1">
+                <div style="display: flex; justify-content: space-between; align-items: center;">
+                    <h4 class="panel-title" ng-bind="user">
+                  Userlist
+                    </h4>
+                    <button type="button" class="btn btn-link pull-right"><i class="fa fa-chevron-down"></i></button>
+                </div>
+            </div>
+            <div id="collapseOne1" class="panel-collapse collapse" ui-sref="user">
+                <ul class="list-group">
+                    <ui-view = "user">
+                    <li class="list-group-item">User 1<button type="button" class="btn btn-link pull-right"><i class="fa fa-ellipsis-v"></i></button><button type="button" class="btn btn-link pull-right"><i class="fa fa-trash-o" style="color:red" ng-click="showAlert($event)"></i></button></li>
+                    <li class="list-group-item">User 2<button type="button" class="btn btn-link pull-right"><i class="fa fa-ellipsis-v"></i></button><button type="button" class="btn btn-link pull-right"><i class="fa fa-trash-o" style="color:red"></i></button></li>
+                    </ul>
+            </div>
+        </div>
+        </div>
+
+
 
 	<footer class="footer">
 		<div class="container">
@@ -97,5 +120,8 @@
 
     <!-- Scripts -->
      <script src="/js/angular-app.js"></script>
+     <script src="/js/app.js"></script>
+
+
 </body>
 </html>

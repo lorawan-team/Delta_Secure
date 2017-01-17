@@ -35141,19 +35141,19 @@ angular.module('routes', [
                 url: '/user/:id',
                 title: 'user management',
                 resolve: {
-                    UserRepository: 'UserRepository',
+                    UserRepository: 'UsersRepository',
                     user: [
                         'UserRepository', '$stateParams',
                         function ($stateParams, UserRepository) {
-                            console.debug(UserRepository.show( { user_id: $stateParams.id } ));
-                            return UserRepository.show( { user_id: $stateParams.id } );
+                            console.debug(UsersRepository.show( { user_id: $stateParams.id } ));
+                            return UsersRepository.show( { user_id: $stateParams.id } );
                         }
                     ],
                 },
                 views: {
                     "" : {
                         templateUrl: 'views/users.html',
-                        controller: 'UserController'
+                        controller: 'UsersController'
                     },
                 },
             });
@@ -35202,7 +35202,8 @@ angular.module('Controllers.main', [
 ])
 .controller('UsersController', [
     '$scope', 'user',
-    function ($scope, user) {
+    function ($scope) {
+      $scope.test= '123';
     }
 ]);
 
